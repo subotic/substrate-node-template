@@ -14,7 +14,10 @@
           rustup
           clang
           protobuf
-        ];
+        ] ++ (pkgs.lib.optional stdenv.isDarwin [
+          pkgs.iconv
+          darwin.apple_sdk.frameworks.Foundation
+        ]);
 
         LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
       };
